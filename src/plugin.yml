@@ -1,0 +1,22 @@
+name: MultiRTP_MX
+version: 1.0.3
+author: MIROSHKA
+main: MIROSHKA.Main
+api: [1.0.0]
+description: Plugin description here.
+
+commands:
+  rtp:
+    description: Random teleportation on the map.
+    usage: /rtp
+  b:
+    description: Teleport to the previous location.
+    usage: /b
+
+permissions:
+  miroshka.rtp:
+    description: Allows players to use the command /rtp.
+    default: op
+  miroshka.back:
+    description: Allows players to use the command /b.
+    default: op

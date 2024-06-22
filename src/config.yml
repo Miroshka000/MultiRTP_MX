@@ -1,0 +1,38 @@
+#Plugin Made By - Miroshka
+
+#RTP Permission: miroshka.rtp
+#BACK Permission: miroshka.back
+
+#------------RTP------------#
+
+#Negative And Positive X
+x: 1000
+#Negative And Positive Z
+z: 1000
+
+#---------------------------#
+
+#UnderWaterCheck (Gives Sender Water Breathing If Under Water After RTP) (1 = Enabled) (0 = Disabled)
+Watercheck: 1
+#Water Breathing Duration In Seconds If Enabled
+Duration: 30
+
+#---------------------------#
+
+#RTP Title Message
+Title: §lРандомная телепортация
+Subtitle: §lВы телепортированы
+
+#---------------------------#
+
+#Error messages
+ErrorMessages:
+  NoBackLocation: '§cУ вас нет предыдущего сохраненного местоположения.'
+  NoPermission: '§cУ вас нет разрешения на использование этой команды.'
+  NotPlayer: '§cЭту команду может использовать только игрок.'
+TeleportFail: "&cНе удалось найти подходящую локацию для телепортации."
+
+  #---------------------------#
+
+  #target World Name
+targetWorldName: "Survival"
