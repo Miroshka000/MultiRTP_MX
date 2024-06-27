@@ -67,13 +67,6 @@ public class MultiRTP extends PluginBase implements Listener {
                         this.getServer().getScheduler().scheduleDelayedTask(this, () -> {
                             player.teleport(this.getHighestPosition(player.getPosition()));
                         }, 20);
-                        if (this.getConfig().getInt("Watercheck") == 1) {
-                            this.getServer().getScheduler().scheduleDelayedTask(this, () -> {
-                                int block = player.getPosition().getSide(BlockFace.UP).getLevelBlock().getId();
-                                if (block == 9) {
-                                }
-                            }, 25);
-                        }
                     } else {
                         player.sendMessage(this.teleportFailMessage);
                     }
@@ -103,7 +96,7 @@ public class MultiRTP extends PluginBase implements Listener {
         int ex = p.getFloorX();
         int ze = p.getFloorZ();
 
-        for (int y = 127; y >= 0; --y) {
+        for (int y = 256; y >= 0; --y) {
             if (p.getLevel().getBlock(new Position(ex, y, ze)).isSolid()) {
                 return new Position(ex + 0.5, y + 1, ze + 0.5, p.getLevel());
             }
@@ -116,7 +109,7 @@ public class MultiRTP extends PluginBase implements Listener {
             Position loc = null;
             if (player.getServer().isLevelLoaded(this.targetWorldName)) {
                 loc = new Position(rand(-this.getConfig().getInt("x"), this.getConfig().getInt("x")),
-                        -10.0,
+                        -70.0,
                         rand(-this.getConfig().getInt("z"), this.getConfig().getInt("z")),
                         player.getServer().getLevelByName(this.targetWorldName));
             }

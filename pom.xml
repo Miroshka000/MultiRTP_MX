@@ -18,16 +18,21 @@
 
     <repositories>
         <repository>
+            <id>jitpack.io</id>
+            <url>https://www.jitpack.io</url>
+        </repository>
+        <repository>
             <id>opencollab</id>
             <url>https://repo.opencollab.dev/main/</url>
         </repository>
+
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>cn.nukkit</groupId>
-            <artifactId>nukkit</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>com.github.PowerNukkitX</groupId>
+            <artifactId>PowerNukkitX</artifactId>
+            <version>master-1704cf2916-1</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
