@@ -8,3 +8,4 @@ Random teleportation of players within specified X and Z coordinates. Ability to
 Access rights to commands:
 miroshka.rtp - Random teleportation on the map.
 miroshka.back - Teleport to a previous location.
+...
