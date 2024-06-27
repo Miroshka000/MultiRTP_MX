@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MultiRtpMX:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MultiRtpMX_jar</output-path>
+    <root id="archive" name="MultiRtpMX.jar">
+      <element id="module-output" name="MultiRtpMX" />
+    </root>
+  </artifact>
+</component>

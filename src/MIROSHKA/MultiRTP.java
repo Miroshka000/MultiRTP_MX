@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
-public class Main extends PluginBase implements Listener {
+public class MultiRTP extends PluginBase implements Listener {
     private static final Random random = new Random(System.currentTimeMillis());
     private Map<UUID, Location> backloc = new HashMap<>();
     private String noBackLocationMessage;
@@ -38,27 +38,10 @@ public class Main extends PluginBase implements Listener {
     }
 
     private void loadConfigMessages() {
-
-        this.noBackLocationMessage = this.getConfig().getString("ErrorMessages.NoBackLocation");
-        if (this.noBackLocationMessage == null || this.noBackLocationMessage.isEmpty()) {
-            this.noBackLocationMessage = "§cУ вас нет предыдущего сохраненного местоположения.";
-        }
-
-        this.noPermissionMessage = this.getConfig().getString("ErrorMessages.NoPermission");
-        if (this.noPermissionMessage == null || this.noPermissionMessage.isEmpty()) {
-            this.noPermissionMessage = "§cУ вас нет разрешения на использование этой команды.";
-        }
-
-        this.notPlayerMessage = this.getConfig().getString("ErrorMessages.NotPlayer");
-        if (this.notPlayerMessage == null || this.notPlayerMessage.isEmpty()) {
-            this.notPlayerMessage = "§cЭту команду может использовать только игрок.";
-        }
-
-        this.teleportFailMessage = this.getConfig().getString("TeleportFail");
-        if (this.teleportFailMessage == null || this.teleportFailMessage.isEmpty()) {
-            this.teleportFailMessage = "§cНе удалось найти подходящую локацию для телепортации.";
-        }
-
+        this.noBackLocationMessage = this.getConfig().getString("ErrorMessages.NoBackLocation", "§cУ вас нет предыдущего сохраненного местоположения.");
+        this.noPermissionMessage = this.getConfig().getString("ErrorMessages.NoPermission", "§cУ вас нет разрешения на использование этой команды.");
+        this.notPlayerMessage = this.getConfig().getString("ErrorMessages.NotPlayer", "§cЭту команду может использовать только игрок.");
+        this.teleportFailMessage = this.getConfig().getString("TeleportFail", "§cНе удалось найти подходящую локацию для телепортации.");
         this.targetWorldName = this.getConfig().getString("targetWorldName");
     }
 
@@ -86,7 +69,7 @@ public class Main extends PluginBase implements Listener {
                         }, 20);
                         if (this.getConfig().getInt("Watercheck") == 1) {
                             this.getServer().getScheduler().scheduleDelayedTask(this, () -> {
-                                int block = Integer.parseInt(String.valueOf(player.getPosition().getSide(BlockFace.UP).getLevelBlock().getId()));
+                                int block = player.getPosition().getSide(BlockFace.UP).getLevelBlock().getId();
                                 if (block == 9) {
                                 }
                             }, 25);
@@ -125,7 +108,6 @@ public class Main extends PluginBase implements Listener {
                 return new Position(ex + 0.5, y + 1, ze + 0.5, p.getLevel());
             }
         }
-
         return null;
     }
 
@@ -163,7 +145,7 @@ public class Main extends PluginBase implements Listener {
         UUID u = player.getUniqueId();
         Location deathLocation = player.getLocation();
         this.backloc.put(u, deathLocation);
-        player.teleport(deathLocation);
+        // player.teleport(deathLocation);
     }
 
     @Override
