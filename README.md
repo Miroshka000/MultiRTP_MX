@@ -6,5 +6,5 @@ Features:
 Random teleportation of players within specified X and Z coordinates. Ability to return to the previous saved location. Checking for water presence and providing underwater breathing effects during teleportation. Customizable messages via configuration file for easy personalization. The MultiRTP_MX plugin offers players a convenient way to navigate the game world and enriches the gameplay experience on Minecraft servers.
 
 Access rights to commands:
-miroshka.rtp - Random teleportation on the map
+miroshka.rtp - Random teleportation on the map.
 miroshka.back - Teleport to a previous location.
