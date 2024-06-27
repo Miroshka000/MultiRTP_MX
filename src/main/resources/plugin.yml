@@ -1,5 +1,5 @@
 name: MultiRTP_MX
-version: 1.0.3
+version: 1.0.4
 author: MIROSHKA
 main: MIROSHKA.Main
 api: [1.0.0]
