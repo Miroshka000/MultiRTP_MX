@@ -1,6 +1,5 @@
-package MIROSHKA.services;
+package miroshka.services;
 
-import cn.nukkit.plugin.Plugin;
 import cn.nukkit.utils.Config;
 
 public class ConfigService {

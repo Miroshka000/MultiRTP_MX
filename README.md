@@ -34,4 +34,4 @@ The plugin is highly configurable through `config.yml`:
 miroshka.rtp - Random teleportation on the map
 miroshka.back - Teleport to a previous location.
 ---
-Made with ❤️ by MIROSHKA
+Made with ❤️ by miroshka

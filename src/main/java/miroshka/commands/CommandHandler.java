@@ -1,7 +1,7 @@
-package MIROSHKA.commands;
+package miroshka.commands;
 
-import MIROSHKA.services.ConfigService;
-import MIROSHKA.services.TeleportService;
+import miroshka.services.ConfigService;
+import miroshka.services.TeleportService;
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;

@@ -1,8 +1,8 @@
-package MIROSHKA;
+package miroshka;
 
-import MIROSHKA.commands.CommandHandler;
-import MIROSHKA.services.ConfigService;
-import MIROSHKA.services.TeleportService;
+import miroshka.commands.CommandHandler;
+import miroshka.services.ConfigService;
+import miroshka.services.TeleportService;
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
@@ -10,7 +10,6 @@ import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerDeathEvent;
 import cn.nukkit.plugin.PluginBase;
-import cn.nukkit.utils.TextFormat;
 
 public class MultiRTP extends PluginBase implements Listener {
     private CommandHandler commandHandler;
@@ -26,7 +25,6 @@ public class MultiRTP extends PluginBase implements Listener {
         this.commandHandler = new CommandHandler(teleportService, configService);
         
         this.getServer().getPluginManager().registerEvents(this, this);
-        this.getLogger().info(TextFormat.GREEN + "MultiRTP успешно загружен!");
     }
 
     @Override
@@ -38,10 +36,5 @@ public class MultiRTP extends PluginBase implements Listener {
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
         teleportService.saveBackLocation(player);
-    }
-
-    @Override
-    public void onDisable() {
-        this.getLogger().info(TextFormat.RED + "MultiRTP выключен");
     }
 }
