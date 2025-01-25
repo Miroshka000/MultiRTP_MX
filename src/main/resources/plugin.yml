@@ -1,7 +1,7 @@
 name: MultiRTP_MX
 version: 1.0.4
-author: MIROSHKA
-main: MIROSHKA.MultiRTP
+author: Miroshka
+main: miroshka.MultiRTP
 api: [1.0.0]
 description: Plugin description here.
 
