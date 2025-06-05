@@ -1,5 +1,5 @@
-name: MultiRTP_MX
-version: 1.0.4
+name: "${name}"
+version: "${version}"
 author: Miroshka
 main: miroshka.MultiRTP
 api: [1.0.0]
@@ -16,6 +16,12 @@ commands:
 permissions:
   miroshka.rtp:
     description: Allows players to use the command /rtp.
+    default: op
+  miroshka.rtp.form:
+    description: Allows players to use the UI form for RTP.
+    default: op
+  miroshka.rtp.near:
+    description: Allows players to teleport near other players.
     default: op
   miroshka.back:
     description: Allows players to use the command /back.

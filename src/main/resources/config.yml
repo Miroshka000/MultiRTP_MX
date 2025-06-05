@@ -1,7 +1,10 @@
 #Plugin Made By - Miroshka
 
-#RTP Permission: miroshka.rtp
-#BACK Permission: miroshka.back
+# --- Permissions ---
+# miroshka.rtp - Access to /rtp command.
+# miroshka.rtp.near - Access to teleport near a player. (Requires miroshka.rtp)
+# miroshka.rtp.form - Access to the UI form. (Requires miroshka.rtp)
+# miroshka.back - Access to /back command.
 
 #------------RTP------------#
 
@@ -9,6 +12,24 @@
 x: 1000
 #Negative And Positive Z
 z: 1000
+
+#------------Teleport Near Player------------#
+teleportNearPlayer:
+  enabled: true
+  # Radius to search for a safe spot around the target player.
+  radius: 500
+
+#------------UI Form------------#
+forms:
+  enabled: true
+  title: "§lСлучайная телепортация"
+  content: "Выберите действие:"
+  buttons:
+    random: "§lТелепортация по миру"
+    near: "§lНайти игрока"
+  worldSelection:
+    title: "§lВыбор мира"
+    content: "Выберите мир для телепортации:"
 
 #---------------------------#
 
@@ -19,7 +40,7 @@ Duration: 30
 
 #---------------------------#
 
-#RTP Title Message
+#RTP Title Message (used when forms are disabled)
 Title: §lРандомная телепортация
 Subtitle: §lВы телепортированы
 
@@ -30,7 +51,8 @@ ErrorMessages:
   NoBackLocation: '§cУ вас нет предыдущего сохраненного местоположения.'
   NoPermission: '§cУ вас нет разрешения на использование этой команды.'
   NotPlayer: '§cЭту команду может использовать только игрок.'
-TeleportFail: "&cНе удалось найти подходящую локацию для телепортации."
+  TeleportFail: "§cНе удалось найти подходящую локацию для телепортации."
+  NoPlayersFound: "§cНе найдено других игроков для телепортации."
 
 #---------------------------#
 
