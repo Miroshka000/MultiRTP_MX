@@ -7,6 +7,8 @@
 # miroshka.back - Access to /back command.
 
 #------------RTP------------#
+# The plugin will search for a safe location until it finds one
+# and will pre-load chunks for smoother teleportation
 
 #Negative And Positive X
 x: 1000
@@ -20,6 +22,8 @@ teleportNearPlayer:
   radius: 500
 
 #------------UI Form------------#
+# Form UI requires FormConstructor 3.0.0 library: 
+# https://github.com/MEFRREEX/FormConstructor/releases/tag/3.0.0
 forms:
   enabled: true
   title: "§lСлучайная телепортация"
