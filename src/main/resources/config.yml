@@ -34,7 +34,7 @@ forms:
   worldSelection:
     title: "§lВыбор мира"
     content: "Выберите мир для телепортации:"
-    allowOtherWorlds: true  # Если false, игроки могут телепортироваться только в текущем мире
+    allowOtherWorlds: true  # If false, players can only teleport within their current world
 
 #---------------------------#
 
