@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "MIROSHKA"
-version = "1.1.1"
+version = "1.1.2"
 
 java.sourceCompatibility = JavaVersion.VERSION_17
 
@@ -16,7 +16,7 @@ repositories {
 
 dependencies {
     compileOnly("cn.nukkit:Nukkit:MOT-SNAPSHOT")
-    implementation("com.github.MEFRREEX:FormConstructor:3.0.0")
+    implementation("com.github.MEFRREEX:FormConstructor:3.1.0")
 }
 
 tasks.withType<JavaCompile> {

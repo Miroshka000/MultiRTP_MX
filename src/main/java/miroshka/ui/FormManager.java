@@ -1,12 +1,15 @@
 package miroshka.ui;
 
+import com.formconstructor.form.SimpleForm;
+import com.formconstructor.form.element.simple.Button;
+import com.formconstructor.form.element.simple.ImageType;
+
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.Position;
-import com.formconstructor.form.SimpleForm;
-import com.formconstructor.form.element.simple.Button;
-import com.formconstructor.form.element.simple.ImageType;
+import cn.nukkit.scheduler.AsyncTask;
+import cn.nukkit.scheduler.Task;
 import miroshka.services.ConfigService;
 import miroshka.services.TeleportService;
 
@@ -104,25 +107,43 @@ public class FormManager {
     
     private void teleportToWorld(Player player, Level level) {
         teleportService.saveBackLocation(player);
-        Position safeLocation = teleportService.getRandomTeleportLocationInLevel(level);
-        
-        if (safeLocation != null) {
-            player.teleport(safeLocation);
-            player.sendTitle(configService.getTitle(), configService.getSubtitle());
-        } else {
-            player.sendMessage(configService.getTeleportFailMessage());
-        }
+        server.getScheduler().scheduleAsyncTask(new AsyncTask() {
+            @Override
+            public void onRun() {
+                Position safeLocation = teleportService.getRandomTeleportLocationInLevel(level);
+                server.getScheduler().scheduleTask(new Task() {
+                    @Override
+                    public void onRun(int currentTick) {
+                        if (safeLocation != null) {
+                            player.teleport(safeLocation);
+                            player.sendTitle(configService.getTitle(), configService.getSubtitle());
+                        } else {
+                            player.sendMessage(configService.getTeleportFailMessage());
+                        }
+                    }
+                });
+            }
+        });
     }
     
     private void teleportNearPlayer(Player player) {
         teleportService.saveBackLocation(player);
-        Position safeLocation = teleportService.getNearPlayerTeleportLocation(player);
-        
-        if (safeLocation != null) {
-            player.teleport(safeLocation);
-            player.sendTitle(configService.getTitle(), configService.getSubtitle());
-        } else {
-            player.sendMessage(configService.getNoPlayersFoundMessage());
-        }
+        server.getScheduler().scheduleAsyncTask(new AsyncTask() {
+            @Override
+            public void onRun() {
+                Position safeLocation = teleportService.getNearPlayerTeleportLocation(player);
+                server.getScheduler().scheduleTask(new Task() {
+                    @Override
+                    public void onRun(int currentTick) {
+                        if (safeLocation != null) {
+                            player.teleport(safeLocation);
+                            player.sendTitle(configService.getTitle(), configService.getSubtitle());
+                        } else {
+                            player.sendMessage(configService.getNoPlayersFoundMessage());
+                        }
+                    }
+                });
+            }
+        });
     }
 } 
