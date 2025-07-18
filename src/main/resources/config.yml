@@ -8,7 +8,7 @@
 
 #------------RTP------------#
 # The plugin will search for a safe location until it finds one
-# and will pre-load chunks for smoother teleportation
+# and will preload chunks for smoother teleportation
 
 #Negative And Positive X
 x: 1000
@@ -22,8 +22,8 @@ teleportNearPlayer:
   radius: 500
 
 #------------UI Form------------#
-# Form UI requires FormConstructor 3.0.0 library: 
-# https://github.com/MEFRREEX/FormConstructor/releases/tag/3.0.0
+# Form UI requires FormConstructor 3.1.0 library: 
+# https://github.com/MEFRREEX/FormConstructor/releases/tag/3.1.0
 forms:
   enabled: true
   title: "§lСлучайная телепортация"
@@ -34,6 +34,7 @@ forms:
   worldSelection:
     title: "§lВыбор мира"
     content: "Выберите мир для телепортации:"
+    allowOtherWorlds: true  # If false, players can only teleport within their current world
 
 #---------------------------#
 
@@ -57,9 +58,20 @@ ErrorMessages:
   NotPlayer: '§cЭту команду может использовать только игрок.'
   TeleportFail: "§cНе удалось найти подходящую локацию для телепортации."
   NoPlayersFound: "§cНе найдено других игроков для телепортации."
+  WorldNotLoaded: "§cМир, в который вы пытаетесь телепортироваться не загружен"
+  InternalError: "§cПроизошла внутренняя ошибка"
 
 #---------------------------#
 
 #Target World Settings
 #Set to "" to use player's current world
 targetWorldName: ""
+
+# Command settings
+commands:
+  rtp:
+    name: "rtp"
+    description: "Random teleportation"
+  back:
+    description: "Teleport to the previous location."
+    usage: "/back"

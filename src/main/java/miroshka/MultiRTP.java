@@ -1,47 +1,59 @@
 package miroshka;
 
-import miroshka.commands.CommandHandler;
-import miroshka.services.ConfigService;
-import miroshka.services.TeleportService;
-import miroshka.ui.FormManager;
 import cn.nukkit.Player;
-import cn.nukkit.command.Command;
-import cn.nukkit.command.CommandSender;
+import cn.nukkit.Server;
+import cn.nukkit.command.CommandMap;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerDeathEvent;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.TextFormat;
+import miroshka.command.impl.BackCommand;
+import miroshka.command.impl.RtpCommand;
+import miroshka.form.RandomTeleportForm;
+import miroshka.services.TeleportService;
+import miroshka.services.impl.TeleportServiceImpl;
 
 public class MultiRTP extends PluginBase implements Listener {
-    private CommandHandler commandHandler;
     private TeleportService teleportService;
-    private ConfigService configService;
-    private FormManager formManager;
 
     @Override
     public void onEnable() {
         this.saveDefaultConfig();
+
+        this.teleportService = new TeleportServiceImpl();
+        Settings.init(this.getConfig());
         
-        this.configService = new ConfigService(this.getConfig());
-        this.teleportService = new TeleportService(configService);
-        
-        boolean formLibraryAvailable = false;
+        boolean formLibraryAvailable;
         try {
             Class.forName("com.formconstructor.form.SimpleForm");
-            configService.setFormLibraryAvailable(true);
+            Settings.setFormLibraryAvailable(true);
             formLibraryAvailable = true;
             this.getLogger().info(TextFormat.GREEN + "FormConstructor found! Enabling form support.");
         } catch (ClassNotFoundException e) {
-            configService.setFormLibraryAvailable(false);
+            Settings.setFormLibraryAvailable(false);
             formLibraryAvailable = false;
             this.getLogger().warning(TextFormat.RED + "FormConstructor not found! UI forms are disabled.");
-            this.getLogger().warning(TextFormat.YELLOW + "Install FormConstructor version 3.0.0 from GitHub:");
-            this.getLogger().warning(TextFormat.AQUA + "https://github.com/MEFRREEX/FormConstructor/releases/tag/3.0.0");
+            this.getLogger().warning(TextFormat.YELLOW + "Install FormConstructor version 3.1.0 from GitHub:");
+            this.getLogger().warning(TextFormat.AQUA + "https://github.com/MEFRREEX/FormConstructor/releases/tag/3.1.0");
         }
-        
-        this.formManager = new FormManager(configService, this.getServer(), teleportService);
-        this.commandHandler = new CommandHandler(teleportService, configService, formManager);
+
+        RandomTeleportForm randomTeleportForm = new RandomTeleportForm(this.getServer(), teleportService);
+
+        CommandMap commandMap = Server.getInstance().getCommandMap();
+
+        commandMap.register("miroshka", new RtpCommand(
+                "rtp",
+                teleportService,
+                randomTeleportForm,
+                this.getConfig()
+        ));
+
+        commandMap.register("miroshka", new BackCommand(
+                "back",
+                teleportService,
+                this.getConfig()
+        ));
         
         this.getServer().getPluginManager().registerEvents(this, this);
         
@@ -57,11 +69,6 @@ public class MultiRTP extends PluginBase implements Listener {
             this.getLogger().warning(TextFormat.RED + "Forms are enabled in config, but FormConstructor not found.");
             this.getLogger().warning(TextFormat.RED + "Teleportation will be performed without forms.");
         }
-    }
-
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        return commandHandler.handleCommand(sender, command, label, args);
     }
 
     @EventHandler

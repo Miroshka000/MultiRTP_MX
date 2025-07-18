@@ -35,7 +35,7 @@ The plugin is highly configurable through `config.yml`:
 * Set target world for teleportation
 
 ## 📋 Dependencies
-* [FormConstructor 3.0.0](https://github.com/MEFRREEX/FormConstructor/releases/tag/3.0.0) - Required for UI forms
+* [FormConstructor 3.1.0](https://github.com/MEFRREEX/FormConstructor/releases/tag/3.1.0) - Required for UI forms
 
 ## 💡 Tips
 * Use `/back` after death to return to your death location
