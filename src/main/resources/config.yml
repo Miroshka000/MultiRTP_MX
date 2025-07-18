@@ -8,7 +8,7 @@
 
 #------------RTP------------#
 # The plugin will search for a safe location until it finds one
-# and will pre-load chunks for smoother teleportation
+# and will preload chunks for smoother teleportation
 
 #Negative And Positive X
 x: 1000
@@ -57,9 +57,20 @@ ErrorMessages:
   NotPlayer: '§cЭту команду может использовать только игрок.'
   TeleportFail: "§cНе удалось найти подходящую локацию для телепортации."
   NoPlayersFound: "§cНе найдено других игроков для телепортации."
+  WorldNotLoaded: "§cМир, в который вы пытаетесь телепортироваться не загружен"
+  InternalError: "§cПроизошла внутренняя ошибка"
 
 #---------------------------#
 
 #Target World Settings
 #Set to "" to use player's current world
 targetWorldName: ""
+
+# Command settings
+commands:
+  rtp:
+    name: "rtp"
+    description: "Random teleportation"
+  back:
+    description: "Teleport to the previous location."
+    usage: "/back"
