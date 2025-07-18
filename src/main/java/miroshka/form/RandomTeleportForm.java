@@ -66,7 +66,7 @@ public class RandomTeleportForm {
 
             form.addButton(new Button("§l§e" + worldName)
                     .setImage(ImageType.PATH, texturePath)
-                    .onClick((p, button) -> handleTeleportToWorld(p)));
+                    .onClick((p, button) -> handleTeleportToWorld(p, worldName)));
         }
 
         form.setCloseHandler(p -> {});
@@ -111,10 +111,10 @@ public class RandomTeleportForm {
         });
     }
 
-    private void handleTeleportToWorld(Player player) {
+    private void handleTeleportToWorld(Player player, String worldName) {
         teleportService.saveBackLocation(player);
 
-        teleportService.teleportToRandomLocation(player).thenAcceptAsync(result -> {
+        teleportService.teleportToRandomLocation(player, worldName).thenAcceptAsync(result -> {
             switch (result) {
                 case SUCCESS:
                     player.sendTitle(Settings.getTitle(), Settings.getSubtitle());

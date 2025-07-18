@@ -1,13 +1,15 @@
 package miroshka.services;
 
-import cn.nukkit.Player;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+
+import cn.nukkit.Player;
 
 public interface TeleportService {
     CompletableFuture<TeleportResult> teleportToRandomLocation(Player player);
     CompletableFuture<TeleportResult> teleportNearPlayer(Player player);
     CompletableFuture<TeleportResult> teleportBack(UUID playerUuid);
+    CompletableFuture<TeleportResult> teleportToRandomLocation(Player player, String targetWorldName);
 
     void saveBackLocation(Player player);
 

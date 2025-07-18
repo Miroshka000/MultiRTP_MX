@@ -1,27 +1,32 @@
 package miroshka.services.impl;
 
-import cn.nukkit.level.Level;
-import miroshka.Settings;
-import miroshka.services.TeleportService;
-import cn.nukkit.Player;
-import cn.nukkit.Server;
-import cn.nukkit.level.Location;
-import cn.nukkit.level.Position;
-import miroshka.utils.TeleportUtils;
-import miroshka.utils.LocationUtils;
-import miroshka.utils.WorldUtils;
-import miroshka.utils.PlayerUtils;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+
+import cn.nukkit.Player;
+import cn.nukkit.Server;
+import cn.nukkit.level.Level;
+import cn.nukkit.level.Location;
+import cn.nukkit.level.Position;
+import miroshka.Settings;
+import miroshka.services.TeleportService;
+import miroshka.utils.LocationUtils;
+import miroshka.utils.PlayerUtils;
+import miroshka.utils.TeleportUtils;
+import miroshka.utils.WorldUtils;
 
 public class TeleportServiceImpl implements TeleportService {
     private final Map<UUID, Location> backLocations = new HashMap<>();
 
     @Override
     public CompletableFuture<TeleportResult> teleportToRandomLocation(Player player) {
+        return teleportToRandomLocation(player, Settings.getTargetWorldName());
+    }
+
+    @Override
+    public CompletableFuture<TeleportResult> teleportToRandomLocation(Player player, String targetWorldName) {
         if (!player.isOnline()) {
             return CompletableFuture.completedFuture(TeleportResult.TELEPORT_FAILED);
         }
@@ -29,7 +34,7 @@ public class TeleportServiceImpl implements TeleportService {
         saveBackLocation(player);
 
         return CompletableFuture.supplyAsync(() -> {
-            Position safeLocation = findRandomSafeLocation(player);
+            Position safeLocation = findRandomSafeLocation(player, targetWorldName);
             if (safeLocation == null) {
                 return TeleportResult.TELEPORT_FAILED;
             }
@@ -94,8 +99,7 @@ public class TeleportServiceImpl implements TeleportService {
                 });
     }
 
-    private Position findRandomSafeLocation(Player player) {
-        String targetWorldName = Settings.getTargetWorldName();
+    private Position findRandomSafeLocation(Player player, String targetWorldName) {
         Level targetLevel = WorldUtils.resolveTargetLevel(player, targetWorldName);
         return targetLevel != null ?
                 LocationUtils.findRandomSafeLocation(
