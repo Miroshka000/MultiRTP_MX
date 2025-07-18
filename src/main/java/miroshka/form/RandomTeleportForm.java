@@ -55,6 +55,10 @@ public class RandomTeleportForm {
         for (Level level : server.getLevels().values()) {
             String worldName = level.getName();
 
+            if (!Settings.isAllowOtherWorlds() && !worldName.equalsIgnoreCase(player.getLevel().getName())) {
+                continue;
+            }
+
             String texturePath;
             if (worldName.toLowerCase().contains("nether")) {
                 texturePath = "textures/blocks/netherrack";

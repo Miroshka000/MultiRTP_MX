@@ -22,8 +22,8 @@ teleportNearPlayer:
   radius: 500
 
 #------------UI Form------------#
-# Form UI requires FormConstructor 3.0.0 library: 
-# https://github.com/MEFRREEX/FormConstructor/releases/tag/3.0.0
+# Form UI requires FormConstructor 3.1.0 library: 
+# https://github.com/MEFRREEX/FormConstructor/releases/tag/3.1.0
 forms:
   enabled: true
   title: "§lСлучайная телепортация"
@@ -34,6 +34,7 @@ forms:
   worldSelection:
     title: "§lВыбор мира"
     content: "Выберите мир для телепортации:"
+    allowOtherWorlds: true  # Если false, игроки могут телепортироваться только в текущем мире
 
 #---------------------------#
 

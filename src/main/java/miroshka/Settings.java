@@ -1,7 +1,6 @@
 package miroshka;
 
 import cn.nukkit.utils.Config;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,6 +32,8 @@ public class Settings {
         forms.put("button.near", config.getString("forms.buttons.near"));
         forms.put("worldSelection.title", config.getString("forms.worldSelection.title"));
         forms.put("worldSelection.content", config.getString("forms.worldSelection.content"));
+        forms.put("worldSelection.allowOtherWorlds", String.valueOf(config.getBoolean("forms.worldSelection.allowOtherWorlds")));
+        settings.put("allowOtherWorlds", config.getBoolean("forms.worldSelection.allowOtherWorlds") ? 1 : 0);
 
         settings.put("maxX", config.getInt("x"));
         settings.put("maxZ", config.getInt("z"));
@@ -140,6 +141,10 @@ public class Settings {
 
     public static String getFormWorldSelectionContent() {
         return forms.get("worldSelection.content");
+    }
+
+    public static boolean isAllowOtherWorlds() {
+        return settings.get("allowOtherWorlds") == 1;
     }
 
     public static String getRtpPermission() {
